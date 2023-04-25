@@ -6,22 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
-    <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/default_text_input_layout"
+        android:theme="@style/EditTextThemeOverlay"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="10dp"
+        android:hint="Default"
+        android:textColorHint="@color/blue_gray"
+        app:helperText="Default helper"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/default_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:backgroundTint="@color/blue_gray" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filled_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:theme="@style/EditTextThemeOverlay"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="10dp"
+        android:hint="FilledBox"
+        android:textColorHint="@color/blue_gray"
+        app:boxBackgroundColor="@color/blue_gray"
+        app:helperText="FilledBox helper"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/default_text_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/filled_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-10dp"
+            android:paddingTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColorHighlight="@color/blue_gray"
+            app:backgroundTint="@color/blue_gray" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlined_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/EditTextThemeOverlay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="OutlinedBox"
+        android:textColorHint="@color/blue_gray"
+        app:helperText="OutlinedBox helper helper"
+        app:boxStrokeColor="@color/blue_gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filled_text_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/outlined_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColorHighlight="@color/blue_gray" />
+
+    </com.google.android.material.textfield.TextInputLayout></androidx.constraintlayout.widget.ConstraintLayout>
