@@ -4,6 +4,5 @@ interface ILayerMapper<TDomain, TOther> {
 
     fun toDomain(value: TOther): TDomain
 
-    fun fromDomain(value: TDomain)
-
+    fun fromDomain(value: TDomain): TOther
 }

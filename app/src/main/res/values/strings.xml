@@ -24,4 +24,5 @@
     <string name="train_name_hint">Название тренировки</string>
     <string name="train_date_hint">Дата тренировки</string>
     <string name="add_exercise_hint">Добавить упражнение</string>
+    <string name="save_train_hint">Сохранить</string>
 </resources>

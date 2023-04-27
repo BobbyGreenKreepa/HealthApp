@@ -3,9 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'realm-android'
 }
-
-apply plugin: "realm-android"
 
 android {
     namespace 'com.example.healthapp'
@@ -50,8 +49,6 @@ dependencies {
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
-    implementation 'io.realm:realm-android:2.2.1'
 
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

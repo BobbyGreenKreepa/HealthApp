@@ -9,16 +9,13 @@ import io.realm.annotations.PrimaryKey
 open class ExerciseRealm (
 
     @PrimaryKey
-    val uid: String,
+    var uid: String? = null,
 
-    val trainId: String,
+    var trainId: String? = null,
 
-    val name: String,
+    var name: String? = null,
 
-    val duration: Int,
+    var duration: Int? = null,
 
-    val approaches: RealmList<ApproachRealm>,
-
-    @LinkingObjects("exercises")
-    val train: RealmResults<TrainRealm>? = null,
+    val approaches: RealmList<ApproachRealm>? = null,
 ) : RealmObject()

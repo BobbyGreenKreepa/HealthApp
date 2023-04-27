@@ -6,6 +6,10 @@ data class Approach (
 
     val uid: String,
 
+    val index: Int,
+
+    val complexity: String,
+
     val duration: Int,
 
     val repeats: Int

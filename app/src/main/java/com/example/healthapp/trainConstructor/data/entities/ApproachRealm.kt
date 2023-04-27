@@ -1,19 +1,24 @@
 package com.example.healthapp.trainConstructor.data.entities
 
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.RealmResults
+import io.realm.annotations.LinkingObjects
 import io.realm.annotations.PrimaryKey
 
 open class ApproachRealm (
 
     @PrimaryKey
-    val uid: String,
+    var uid: String? = null,
 
-    val exerciseId: String,
+    var exerciseId: String? = null,
 
-    val duration: Int,
+    var index: Int? = null,
 
-    val repeats: Int,
+    var complexity: String? = null,
 
-    val exercise: RealmResults<ExerciseRealm>? = null
+    var duration: Int? = null,
+
+    var repeats: Int? = null
+
 ) : RealmObject()

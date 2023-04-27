@@ -8,8 +8,8 @@
     tools:context=".trainConstructor.ui.TrainConstructorFragment">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/trainNameLayout"
         style="@style/EditTextLayoutWithHint"
-        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,48 +18,61 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
+            android:id="@+id/trainName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/train_name_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/trainDateLayout"
         style="@style/EditTextLayoutWithHint"
-        app:endIconDrawable="@drawable/calendar_ic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:endIconDrawable="@drawable/calendar_ic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/trainNameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/PickHolderTextView"
+            android:id="@+id/trainDate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/train_date_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/addExercise"
         style="@style/DefaultButtonStyle"
-        android:padding="16dp"
-        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/add_exercise_hint"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainDateLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         style="@style/DefaultRecyclerViewStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/addTrain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/addExercise" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addTrain"
+        style="@style/DefaultButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_train_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

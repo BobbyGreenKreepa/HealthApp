@@ -13,6 +13,8 @@
     <color name="strong_blue">#04145c</color>
     <color name="strong_gray">#2f3f44</color>
     <color name="light_dark">#363f48</color>
+    <color name="light_purple">#312c4d</color>
+    <color name="dirty_blue">#2b5a5c</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/light_blue</color>
 
