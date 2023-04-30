@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.healthapp.R
 import com.example.healthapp.databinding.SimpleApproachInfoViewBinding
-import com.example.healthapp.trainConstructor.domain.entities.Approach
+import com.example.healthapp.trains.trainConstructor.domain.entities.Approach
 
 @SuppressLint("ViewConstructor")
 class SimpleApproachInfoView constructor(
@@ -19,7 +19,7 @@ class SimpleApproachInfoView constructor(
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.approaches_view, this, true)
+        inflater.inflate(R.layout.simple_approach_info_view, this, true)
         binding = SimpleApproachInfoViewBinding.bind(this)
         setValues()
     }

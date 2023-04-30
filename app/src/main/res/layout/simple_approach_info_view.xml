@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="?colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:drawableEnd="@drawable/timer_ic"
-            android:textColor="?colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="180 секунд" />
@@ -43,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/repeats_ic"
-            android:textColor="?colorPrimary"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/complexity"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +52,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/complexity_ic"
-            android:textColor="?colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="65 кг" />

@@ -1,6 +1,5 @@
 package com.example.healthapp.core.di
 
-import com.example.healthapp.trainConstructor.data.database.DbRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
