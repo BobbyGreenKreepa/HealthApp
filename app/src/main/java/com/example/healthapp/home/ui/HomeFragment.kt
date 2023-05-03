@@ -36,7 +36,7 @@ class HomeFragment : AbstractFragment() {
         }
 
         binding.addTrainButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_trainConstructor)
+            findNavController().navigate(R.id.action_homeFragment_to_navigation3)
         }
     }
 }

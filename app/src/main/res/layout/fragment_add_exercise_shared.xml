@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".trains.trainConstructor.ui.exercise.ExerciseConstructorFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exerciseNameLayout"
+        style="@style/EditTextLayoutWithHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextStyle"
+            android:id="@+id/exerciseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/exercise_name_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/saveExercise"
+            style="@style/DefaultButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:text="@string/add_exercise" />
+
+        <Button
+            android:id="@+id/addApproach"
+            style="@style/DefaultButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="@string/add_approach" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/approachesList"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        style="@style/DefaultRecyclerViewStyle"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseNameLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ open class ExerciseRealm (
 
     var name: String? = null,
 
-    var duration: Int? = null,
+    var duration: String? = null,
 
-    val approaches: RealmList<ApproachRealm>? = null,
+    val approaches: RealmList<ApproachRealm>? = RealmList()
 ) : RealmObject()

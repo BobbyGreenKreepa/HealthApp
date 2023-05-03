@@ -31,12 +31,33 @@
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_trainConstructor"
-            app:destination="@id/trainConstructor" />
+            android:id="@+id/action_homeFragment_to_navigation3"
+            app:destination="@id/navigation3" />
     </fragment>
     <fragment
-        android:id="@+id/trainConstructor"
-        android:name="com.example.healthapp.trains.trainConstructor.ui.TrainConstructorFragment"
-        android:label="fragment_train_constructor"
-        tools:layout="@layout/fragment_train_constructor" />
+        android:id="@+id/addExerciseSharedFragment"
+        android:name="com.example.healthapp.trains.trainConstructor.ui.exercise.ExerciseConstructorFragment"
+        android:label="fragment_add_exercise_shared"
+        tools:layout="@layout/fragment_add_exercise_shared" >
+        <action
+            android:id="@+id/action_addExerciseSharedFragment_to_addAproachSharedDialog"
+            app:destination="@id/addAproachSharedDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addAproachSharedDialog"
+        android:name="com.example.healthapp.trains.trainConstructor.ui.approach.AddApproachSharedDialog"
+        android:label="fragment_add_aproach_shared_dialog"
+        tools:layout="@layout/fragment_add_aproach_shared_dialog" />
+    <navigation android:id="@+id/navigation3"
+        app:startDestination="@id/trainConstructor">
+        <fragment
+            android:id="@+id/trainConstructor"
+            android:name="com.example.healthapp.trains.trainConstructor.ui.train.TrainConstructorFragment"
+            android:label="fragment_train_constructor"
+            tools:layout="@layout/fragment_train_constructor">
+            <action
+                android:id="@+id/action_trainConstructor_to_addExerciseSharedFragment"
+                app:destination="@id/addExerciseSharedFragment" />
+        </fragment>
+    </navigation>
 </navigation>

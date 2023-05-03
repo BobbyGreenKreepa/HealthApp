@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-fun <S : RealmObject, R> flowAdapter(mapper: IRealmMapper<R, S>, block: () -> RealmQuery<S>): Flow<List<R>> = callbackFlow {
+fun <S : RealmObject, R> flowAdapter(mapper: IRealmMapper<R, S>, query: () -> RealmQuery<S>): Flow<List<R>> = callbackFlow {
 
-    val results = block().findAllAsync()!!
+    val results = query().findAllAsync()!!
     val realm = results.realm!!
 
     val listener = RealmChangeListener<RealmResults<S>> { t ->

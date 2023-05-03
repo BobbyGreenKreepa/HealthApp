@@ -28,7 +28,7 @@ private fun expandAction(view: View): Animation {
         }
     }
 
-    animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong() / 2
+    animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong()
     view.startAnimation(animation)
 
     return animation

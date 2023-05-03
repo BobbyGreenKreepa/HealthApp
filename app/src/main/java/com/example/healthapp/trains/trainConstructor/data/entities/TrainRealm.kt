@@ -13,5 +13,5 @@ open class TrainRealm (
 
     var dateTime: String? = null,
 
-    var exercises: RealmList<ExerciseRealm>? = null
+    var exercises: RealmList<ExerciseRealm>? = RealmList()
 ) : RealmObject()

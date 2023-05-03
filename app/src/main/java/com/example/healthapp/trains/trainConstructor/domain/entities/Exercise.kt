@@ -7,7 +7,7 @@ data class Exercise (
 
     var name: String,
 
-    var duration: Int,
+    var duration: String,
 
     var approaches: List<Approach>
     )

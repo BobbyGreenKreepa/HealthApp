@@ -1,4 +1,4 @@
-package com.example.healthapp.trains.trainConstructor.domain.useCasesImpl
+package com.example.healthapp.trains.trainConstructor.domain.useCasesImpl.trains
 
 import com.example.healthapp.trains.trainConstructor.domain.entities.Train
 import com.example.healthapp.trains.trainConstructor.domain.repos.ITrainsRepository

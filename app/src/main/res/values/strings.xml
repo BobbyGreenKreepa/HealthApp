@@ -25,4 +25,12 @@
     <string name="train_date_hint">Дата тренировки</string>
     <string name="add_exercise_hint">Добавить упражнение</string>
     <string name="save_train_hint">Сохранить</string>
+
+    <!-- EXERCISE CONSTRUCTOR -->
+    <string name="add_exercise">Сохранить</string>
+    <string name="add_approach">Добавить подход</string>
+    <string name="exercise_name_hint">Назвние упражениения</string>
+
+    <!-- APPROACH CONSTRUCTOR -->
+    <string name="save_approach_text">Сохранить</string>
 </resources>

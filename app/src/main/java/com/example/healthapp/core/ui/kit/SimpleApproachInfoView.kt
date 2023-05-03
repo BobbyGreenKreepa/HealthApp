@@ -26,16 +26,16 @@ class SimpleApproachInfoView constructor(
 
     private fun setValues() {
         with(binding) {
-            duration.text = approach.duration.toString()
+            duration.text = approach.duration
 
-            if (approach.repeats == 0) {
+            if (approach.repeats.isEmpty()) {
                 repeats.visibility = GONE
             } else {
-                repeats.text = approach.repeats.toString()
+                repeats.text = approach.repeats
             }
 
             complexity.text = approach.complexity
-            index.text = approach.index.toString()
+            index.text = approach.index
         }
     }
 }

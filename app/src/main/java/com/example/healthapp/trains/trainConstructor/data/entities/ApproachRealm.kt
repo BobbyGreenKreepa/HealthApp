@@ -10,12 +10,12 @@ open class ApproachRealm (
 
     var exerciseId: String? = null,
 
-    var index: Int? = null,
+    var index: String? = null,
 
     var complexity: String? = null,
 
-    var duration: Int? = null,
+    var duration: String? = null,
 
-    var repeats: Int? = null
+    var repeats: String? = null
 
 ) : RealmObject()

@@ -1,4 +1,4 @@
-package com.example.healthapp.trains.trainConstructor.data.database
+package com.example.healthapp.trains.trainConstructor.data.database.trains
 
 import com.example.healthapp.core.data.flowAdapter
 import com.example.healthapp.trains.trainConstructor.data.entities.TrainRealm
@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class DbRepository @Inject constructor(
+class TrainsDatabaseRepository @Inject constructor(
     private val realmConfiguration: RealmConfiguration,
     private val trainsMapper: TrainsFromRealmMapper
 ) {
@@ -29,6 +29,9 @@ class DbRepository @Inject constructor(
                 .equalTo("uid", train.id)
                 .findFirst()
 
+            deletableTrain?.exercises?.forEach { it ->
+                it.approaches?.deleteAllFromRealm()
+            }
             deletableTrain?.exercises?.deleteAllFromRealm()
             deletableTrain?.deleteFromRealm()
         }

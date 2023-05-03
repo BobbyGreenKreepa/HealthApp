@@ -1,4 +1,4 @@
-package com.example.healthapp.trains.trainConstructor.ui.exercises
+package com.example.healthapp.trains.trainConstructor.ui.train.exercises
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,8 @@ import com.example.healthapp.core.foundation.viewUtils.expandOrCollapse
 import com.example.healthapp.core.ui.kit.SimpleApproachInfoView
 import com.example.healthapp.databinding.LongExerciseViewItemBinding
 
-class ExerciseAdapter(private val transition: () -> Unit) : ListAdapter<ExerciseListItem, ExerciseAdapter.ViewHolder>(DiffCallback()) {
+class ExerciseAdapter(private val transition: () -> Unit) :
+    ListAdapter<ExerciseListItem, ExerciseAdapter.ViewHolder>(DiffCallback()) {
 
     private lateinit var binding: LongExerciseViewItemBinding
 
