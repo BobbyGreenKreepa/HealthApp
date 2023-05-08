@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,8 +14,10 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.example.healthapp.R
 import com.example.healthapp.core.foundation.coroutines.launchOnStart
-import com.example.healthapp.core.foundation.textViewUtils.onTextChange
-import com.example.healthapp.core.foundation.textViewUtils.onTextSet
+import com.example.healthapp.core.foundation.recyclerView.clearError
+import com.example.healthapp.core.foundation.recyclerView.setError
+import com.example.healthapp.core.foundation.textViewUtils.*
+import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentTrainConstructorBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import com.example.healthapp.trains.trainConstructor.ui.train.exercises.ExerciseAdapter
@@ -35,8 +38,6 @@ class TrainConstructorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentTrainConstructorBinding.inflate(inflater, container, false)
-        binding.addTrain.setOnClickListener { viewModel.addTrain() }
-        binding.addExercise.setOnClickListener { viewModel.addExercise() }
         return binding.root
     }
 
@@ -45,23 +46,48 @@ class TrainConstructorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun initButtons(adapter: ExerciseAdapter) {
+        binding.apply {
+            addExercise.setOnClickListener {
+                findNavController().navigate(R.id.action_trainConstructor_to_addExerciseSharedFragment)
+            }
+
+            addTrain.setOnClickListener {
+                viewModel.validateTrain { validate ->
+                    if (validate) {
+                        viewModel.addTrain()
+                        findNavController().popBackStack()
+                    } else {
+                        trainDateLayout.emptyValidate()
+                        trainNameLayout.emptyValidate()
+                        if (adapter.currentList.isEmpty()) {
+                            showToast(getString(R.string.add_train_validate_failed_text))
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private fun observerViewState() {
         val adapter = ExerciseAdapter {
             TransitionManager.beginDelayedTransition(binding.exercisesList, AutoTransition())
         }
 
-        with(binding) {
+        initButtons(adapter)
+
+        binding.apply {
             exercisesList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             exercisesList.adapter = adapter
             exercisesList.setHasFixedSize(true)
-            trainName.onTextChange { viewModel.trainName.value = it }
-            trainDate.onTextSet { viewModel.trainDate.value = it }
 
-            addExercise.setOnClickListener {
-                findNavController().navigate(R.id.action_trainConstructor_to_addExerciseSharedFragment)
-            }
+            trainNameLayout.onTextChange { viewModel.trainName.value = it }
+            trainDate.onTextSet { viewModel.trainDate.value = it }
         }
 
-        viewModel.exercises.onEach { adapter.submitList(it) }.launchOnStart(lifecycleScope)
+        viewModel.exercises.onEach {
+            binding.emptyWarning.isVisible = it.isEmpty()
+            adapter.submitList(it)
+        }.launchOnStart(lifecycleScope)
     }
 }

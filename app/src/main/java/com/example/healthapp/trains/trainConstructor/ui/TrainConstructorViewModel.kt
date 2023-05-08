@@ -3,6 +3,7 @@ package com.example.healthapp.trains.trainConstructor.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healthapp.core.foundation.coroutines.add
+import com.example.healthapp.core.foundation.coroutines.clear
 import com.example.healthapp.core.foundation.coroutines.remove
 import com.example.healthapp.trains.trainConstructor.domain.entities.Approach
 import com.example.healthapp.trains.trainConstructor.domain.entities.Exercise
@@ -22,6 +23,7 @@ class TrainConstructorViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _trainUid: String = UUID.randomUUID().toString()
+    private var currentExerciseId: String = UUID.randomUUID().toString()
 
     val trainName: MutableStateFlow<String> = MutableStateFlow("")
     val trainDate: MutableStateFlow<String> = MutableStateFlow("")
@@ -30,7 +32,6 @@ class TrainConstructorViewModel @Inject constructor(
     val exercises: StateFlow<List<ExerciseListItem>> get() = _exercises
 
     val currentExerciseName: MutableStateFlow<String> = MutableStateFlow("")
-
     private val _currentExerciseApproaches: MutableStateFlow<MutableList<Approach>> = MutableStateFlow(mutableListOf())
     val currentExerciseApproaches: StateFlow<List<Approach>> get() = _currentExerciseApproaches
 
@@ -44,7 +45,7 @@ class TrainConstructorViewModel @Inject constructor(
                 uid = _trainUid,
                 name = trainName.value,
                 dateTime = trainDate.value,
-                exercises = exercises.value.map { it -> it.value }
+                exercises = exercises.value.map { it.value }
             ))
         }
     }
@@ -59,23 +60,39 @@ class TrainConstructorViewModel @Inject constructor(
         )
         _exercises.add(ExerciseListItem(exercise, false))
 
-        _currentExerciseApproaches.value = mutableListOf()
-
+        _currentExerciseApproaches.clear()
+        currentExerciseId = UUID.randomUUID().toString()
     }
 
     fun removeExercise(exerciseItem: ExerciseListItem) {
         _exercises.remove(exerciseItem)
     }
 
+    fun validateApproach(onValidate: (Boolean) -> Unit) {
+        onValidate(currentApproachComplexity.value.isNotEmpty() && currentApproachDuration.value.isNotEmpty())
+    }
+
+    fun validateExercise(onValidate: (Boolean) -> Unit) {
+        onValidate(currentExerciseApproaches.value.isNotEmpty() && currentExerciseName.value.isNotEmpty())
+    }
+
+    fun validateTrain(onValidate: (Boolean) -> Unit) {
+        onValidate(exercises.value.isNotEmpty() && trainDate.value.isNotEmpty() && trainName.value.isNotEmpty())
+    }
+
     fun addApproach() {
         _currentExerciseApproaches.add(Approach(
             uid = UUID.randomUUID().toString(),
-            exerciseId = "",
-            index = currentExerciseApproaches.value.size.toString(),
+            exerciseId = currentExerciseId,
+            index = String.format("${currentExerciseApproaches.value.size + 1} подход"),
             complexity = currentApproachComplexity.value,
             duration = currentApproachDuration.value,
             repeats = currentApproachRepeats.value
         ))
+
+        currentApproachComplexity.clear()
+        currentApproachRepeats.clear()
+        currentApproachDuration.clear()
     }
 
     fun removeApproach(approach: Approach) {

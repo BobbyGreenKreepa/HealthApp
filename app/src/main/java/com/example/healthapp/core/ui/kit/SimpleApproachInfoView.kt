@@ -16,7 +16,6 @@ class SimpleApproachInfoView constructor(
 
     private val binding: SimpleApproachInfoViewBinding
 
-
     init {
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.simple_approach_info_view, this, true)

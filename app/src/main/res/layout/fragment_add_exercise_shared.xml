@@ -66,4 +66,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseNameLayout" />
 
+    <TextView
+        style="@style/ListEmptyWarningStyle"
+        android:id="@+id/emptyWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_approaches_warning"
+        app:layout_constraintBottom_toBottomOf="@+id/approachesList"
+        app:layout_constraintEnd_toEndOf="@+id/approachesList"
+        app:layout_constraintStart_toStartOf="@+id/approachesList"
+        app:layout_constraintTop_toTopOf="@+id/approachesList" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

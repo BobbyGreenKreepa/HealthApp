@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.example.healthapp.R
+import com.example.healthapp.core.foundation.recyclerView.clearError
+import com.example.healthapp.core.foundation.textViewUtils.emptyValidate
 import com.example.healthapp.core.foundation.textViewUtils.onTextChange
+import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentAddAproachSharedDialogBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,18 +34,27 @@ class AddApproachSharedDialog : DialogFragment() {
         // Inflate the layout for this fragment
         _binding = FragmentAddAproachSharedDialogBinding.inflate(inflater, container, false)
         observeViewState()
-        dialog?.window?.setBackgroundDrawableResource(R.drawable.doalog_background_rounded)
+        dialog?.window?.setBackgroundDrawableResource(R.drawable.dialog_background_rounded)
         return binding.root
     }
 
     private fun observeViewState() {
         with(binding) {
-            complexity.onTextChange { viewModel.currentApproachComplexity.value = it }
-            duration.onTextChange { viewModel.currentApproachDuration.value = it }
-            repeats.onTextChange { viewModel.currentApproachRepeats.value = it }
+            index.text = root.context.getString(R.string.approach_index_format, viewModel.currentExerciseApproaches.value.size + 1)
+            complexityLayout.onTextChange { viewModel.currentApproachComplexity.value = it }
+            durationLayout.onTextChange { viewModel.currentApproachDuration.value = it }
+            repeatsLayout.onTextChange { viewModel.currentApproachRepeats.value = it }
+
             save.setOnClickListener {
-                viewModel.addApproach()
-                dismiss()
+                viewModel.validateApproach { validate ->
+                    if (validate) {
+                        viewModel.addApproach()
+                        dismiss()
+                    } else {
+                        complexityLayout.emptyValidate()
+                        durationLayout.emptyValidate()
+                    }
+                }
             }
         }
     }

@@ -51,9 +51,14 @@
         <item name="android:textSize">20sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlActivated">@color/error_color</item>
         <item name="android:textColorHighlight">@color/white</item>
         <item name="colorControlHighlight">@color/white</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/error_color</item>
+        <item name="boxStrokeErrorColor">@color/error_color</item>
+        <item name="endIconDrawable">@null</item>
+        <item name="errorIconTint">@color/error_color</item>
     </style>
 
     <style name="EditTextStyle">
@@ -85,6 +90,11 @@
 
     <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="ListEmptyWarningStyle">
+        <item name="android:textColor">@color/shark_gray</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

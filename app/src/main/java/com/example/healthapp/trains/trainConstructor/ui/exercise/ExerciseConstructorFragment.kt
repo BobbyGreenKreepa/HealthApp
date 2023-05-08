@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,7 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthapp.R
 import com.example.healthapp.core.foundation.coroutines.launchOnStart
+import com.example.healthapp.core.foundation.recyclerView.setError
+import com.example.healthapp.core.foundation.textViewUtils.emptyValidate
 import com.example.healthapp.core.foundation.textViewUtils.onTextChange
+import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentAddExerciseSharedBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import com.example.healthapp.trains.trainConstructor.ui.exercise.approaches.ApproachesAdapter
@@ -48,16 +52,31 @@ class ExerciseConstructorFragment : Fragment() {
             approachesList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             approachesList.adapter = adapter
             approachesList.setHasFixedSize(true)
-            exerciseName.onTextChange { viewModel.currentExerciseName.value = it }
+
+            exerciseNameLayout.onTextChange { viewModel.currentExerciseName.value = it }
+
             addApproach.setOnClickListener {
                 findNavController().navigate(R.id.action_addExerciseSharedFragment_to_addAproachSharedDialog)
             }
 
             saveExercise.setOnClickListener {
-                viewModel.addExercise()
+                viewModel.validateExercise { validate ->
+                    if (validate) {
+                        viewModel.addExercise()
+                        findNavController().popBackStack()
+                    } else {
+                        exerciseNameLayout.emptyValidate()
+                        if (adapter.currentList.isEmpty()) {
+                            showToast(getString(R.string.add_exercise_validate_failed_text))
+                        }
+                    }
+                }
             }
         }
 
-        viewModel.currentExerciseApproaches.onEach { adapter.submitList(it) }.launchOnStart(lifecycleScope)
+        viewModel.currentExerciseApproaches.onEach {
+            binding.emptyWarning.isVisible = it.isEmpty()
+            adapter.submitList(it)
+        }.launchOnStart(lifecycleScope)
     }
 }
