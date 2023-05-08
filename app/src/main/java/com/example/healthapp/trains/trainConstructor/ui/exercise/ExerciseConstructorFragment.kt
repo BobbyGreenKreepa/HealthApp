@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
@@ -21,6 +23,7 @@ import com.example.healthapp.databinding.FragmentAddExerciseSharedBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import com.example.healthapp.trains.trainConstructor.ui.exercise.approaches.ApproachesAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -30,6 +33,12 @@ class ExerciseConstructorFragment : Fragment() {
 
     private var _binding: FragmentAddExerciseSharedBinding? = null
     private val  binding get() = _binding!!
+
+    val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            viewModel.clearNonConsistentExercise()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +51,9 @@ class ExerciseConstructorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeViewState()
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.clearNonConsistentExercise()
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -74,9 +86,9 @@ class ExerciseConstructorFragment : Fragment() {
             }
         }
 
-        viewModel.currentExerciseApproaches.onEach {
-            binding.emptyWarning.isVisible = it.isEmpty()
-            adapter.submitList(it)
-        }.launchOnStart(lifecycleScope)
+        viewModel.currentExerciseApproaches.onEach {list ->
+            binding.emptyWarning.isVisible = list.isEmpty()
+            adapter.submitList(list)
+        }.launchIn(lifecycleScope)
     }
 }

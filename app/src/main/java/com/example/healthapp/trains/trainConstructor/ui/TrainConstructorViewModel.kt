@@ -27,7 +27,6 @@ class TrainConstructorViewModel @Inject constructor(
 
     val trainName: MutableStateFlow<String> = MutableStateFlow("")
     val trainDate: MutableStateFlow<String> = MutableStateFlow("")
-
     private val _exercises: MutableStateFlow<MutableList<ExerciseListItem>> = MutableStateFlow(mutableListOf())
     val exercises: StateFlow<List<ExerciseListItem>> get() = _exercises
 
@@ -93,6 +92,13 @@ class TrainConstructorViewModel @Inject constructor(
         currentApproachComplexity.clear()
         currentApproachRepeats.clear()
         currentApproachDuration.clear()
+    }
+
+    fun clearNonConsistentExercise() {
+        _currentExerciseApproaches.clear()
+        currentApproachRepeats.clear()
+        currentApproachDuration.clear()
+        currentExerciseName.clear()
     }
 
     fun removeApproach(approach: Approach) {

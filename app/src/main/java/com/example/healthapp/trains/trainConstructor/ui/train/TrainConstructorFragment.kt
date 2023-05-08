@@ -22,6 +22,7 @@ import com.example.healthapp.databinding.FragmentTrainConstructorBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import com.example.healthapp.trains.trainConstructor.ui.train.exercises.ExerciseAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -88,6 +89,6 @@ class TrainConstructorFragment : Fragment() {
         viewModel.exercises.onEach {
             binding.emptyWarning.isVisible = it.isEmpty()
             adapter.submitList(it)
-        }.launchOnStart(lifecycleScope)
+        }.launchIn(lifecycleScope)
     }
 }
