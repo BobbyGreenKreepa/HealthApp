@@ -10,21 +10,27 @@ import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthapp.R
-import com.example.healthapp.core.foundation.coroutines.launchOnStart
-import com.example.healthapp.core.foundation.recyclerView.setError
 import com.example.healthapp.core.foundation.textViewUtils.emptyValidate
 import com.example.healthapp.core.foundation.textViewUtils.onTextChange
 import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentAddExerciseSharedBinding
+import com.example.healthapp.trains.trainConstructor.domain.entities.Approach
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import com.example.healthapp.trains.trainConstructor.ui.exercise.approaches.ApproachesAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ExerciseConstructorFragment : Fragment() {
@@ -33,12 +39,6 @@ class ExerciseConstructorFragment : Fragment() {
 
     private var _binding: FragmentAddExerciseSharedBinding? = null
     private val  binding get() = _binding!!
-
-    val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            viewModel.clearNonConsistentExercise()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +53,7 @@ class ExerciseConstructorFragment : Fragment() {
         observeViewState()
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             viewModel.clearNonConsistentExercise()
+            findNavController().popBackStack()
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -86,9 +87,19 @@ class ExerciseConstructorFragment : Fragment() {
             }
         }
 
-        viewModel.currentExerciseApproaches.onEach {list ->
-            binding.emptyWarning.isVisible = list.isEmpty()
-            adapter.submitList(list)
-        }.launchIn(lifecycleScope)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) { // Trigger the flow and start listening for values.
+                viewModel.currentExerciseApproaches.onEach {
+                    parseApproaches(it, adapter)
+                }.collect {
+                    binding.emptyWarning.isVisible = it.isEmpty()
+                }
+            }
+        }
+    }
+
+    private fun parseApproaches(approaches: List<Approach>, adapter: ApproachesAdapter) {
+        binding.emptyWarning.isVisible = approaches.isEmpty()
+        adapter.submitList(approaches)
     }
 }

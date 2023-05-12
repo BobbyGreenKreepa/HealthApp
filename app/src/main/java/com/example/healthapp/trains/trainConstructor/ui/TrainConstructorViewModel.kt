@@ -1,5 +1,8 @@
 package com.example.healthapp.trains.trainConstructor.ui
 
+import android.util.Log
+import androidx.annotation.MainThread
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healthapp.core.foundation.coroutines.add
@@ -11,8 +14,10 @@ import com.example.healthapp.trains.trainConstructor.domain.entities.Train
 import com.example.healthapp.trains.trainConstructor.domain.useCasesImpl.trains.AddTrainUseCase
 import com.example.healthapp.trains.trainConstructor.ui.train.exercises.ExerciseListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -32,7 +37,7 @@ class TrainConstructorViewModel @Inject constructor(
 
     val currentExerciseName: MutableStateFlow<String> = MutableStateFlow("")
     private val _currentExerciseApproaches: MutableStateFlow<MutableList<Approach>> = MutableStateFlow(mutableListOf())
-    val currentExerciseApproaches: StateFlow<List<Approach>> get() = _currentExerciseApproaches
+    val currentExerciseApproaches: Flow<List<Approach>> get() = _currentExerciseApproaches
 
     val currentApproachComplexity: MutableStateFlow<String> = MutableStateFlow("")
     val currentApproachDuration: MutableStateFlow<String> = MutableStateFlow("")
@@ -55,9 +60,11 @@ class TrainConstructorViewModel @Inject constructor(
             trainId = _trainUid,
             name = currentExerciseName.value,
             duration = "exerciseDuration",
-            approaches = currentExerciseApproaches.value
+            approaches = _currentExerciseApproaches.value
         )
-        _exercises.add(ExerciseListItem(exercise, false))
+        val value = _exercises.value
+        value.add(ExerciseListItem(exercise, false))
+        _exercises.value = value
 
         _currentExerciseApproaches.clear()
         currentExerciseId = UUID.randomUUID().toString()
@@ -72,7 +79,7 @@ class TrainConstructorViewModel @Inject constructor(
     }
 
     fun validateExercise(onValidate: (Boolean) -> Unit) {
-        onValidate(currentExerciseApproaches.value.isNotEmpty() && currentExerciseName.value.isNotEmpty())
+        onValidate(_currentExerciseApproaches.value.isNotEmpty() && currentExerciseName.value.isNotEmpty())
     }
 
     fun validateTrain(onValidate: (Boolean) -> Unit) {
@@ -83,7 +90,7 @@ class TrainConstructorViewModel @Inject constructor(
         _currentExerciseApproaches.add(Approach(
             uid = UUID.randomUUID().toString(),
             exerciseId = currentExerciseId,
-            index = String.format("${currentExerciseApproaches.value.size + 1} подход"),
+            index = String.format("${_currentExerciseApproaches.value.size + 1} подход"),
             complexity = currentApproachComplexity.value,
             duration = currentApproachDuration.value,
             repeats = currentApproachRepeats.value
@@ -103,5 +110,10 @@ class TrainConstructorViewModel @Inject constructor(
 
     fun removeApproach(approach: Approach) {
         _currentExerciseApproaches.remove(approach)
+    }
+
+    override fun onCleared() {
+        Log.e("ViewModel${this}", "cleared")
+        super.onCleared()
     }
 }

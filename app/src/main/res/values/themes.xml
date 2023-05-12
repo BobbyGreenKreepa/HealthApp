@@ -42,18 +42,30 @@
 
     <style name="EditTextLayoutWithHint" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" >
         <item name="endIconMode">custom</item>
-        <item name="endIconTint">@color/white</item>
-        <item name="boxStrokeColor">@color/white</item>
-        <item name="boxStrokeWidth">2dp</item>
-        <item name="boxStrokeWidthFocused">2dp</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="endIconTint">@color/edit_text_selector_light</item>
+        <item name="boxStrokeColor">@color/edit_text_selector_light</item>
+        <item name="boxStrokeWidth">3dp</item>
+        <item name="boxStrokeWidthFocused">3dp</item>
+        <item name="android:textColorHint">@color/edit_text_selector_light</item>
+        <item name="hintTextColor">@color/edit_text_selector_light</item>
         <item name="android:textSize">20sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/error_color</item>
-        <item name="android:textColorHighlight">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/error_color</item>
+        <item name="boxStrokeErrorColor">@color/error_color</item>
+        <item name="endIconDrawable">@null</item>
+        <item name="errorIconTint">@color/error_color</item>
+    </style>
+
+    <style name="EditTextLayoutWithHintDark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" >
+        <item name="endIconMode">custom</item>
+        <item name="endIconTint">@color/strong_blue</item>
+        <item name="boxStrokeColor">@color/edit_text_selector</item>
+        <item name="boxStrokeWidth">3dp</item>
+        <item name="boxStrokeWidthFocused">3dp</item>
+        <item name="android:textColorHint">@color/edit_text_selector</item>
+        <item name="hintTextColor">@color/edit_text_selector</item>
+        <item name="android:textSize">20sp</item>
         <item name="errorEnabled">true</item>
         <item name="errorTextColor">@color/error_color</item>
         <item name="boxStrokeErrorColor">@color/error_color</item>
@@ -62,13 +74,16 @@
     </style>
 
     <style name="EditTextStyle">
+        <item name="android:textColor">@color/edit_text_selector_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="EditTextStyleDark">
+        <item name="hintTextColor">@color/edit_text_selector</item>
         <item name="endIconMode">custom</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
-        <item name="android:textColorHighlight">@color/white</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/edit_text_selector</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">monospace</item>
         <item name="android:textSize">16sp</item>

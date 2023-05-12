@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthapp.core.foundation.viewUtils.collapse
-import com.example.healthapp.core.foundation.viewUtils.expand
 import com.example.healthapp.core.foundation.viewUtils.expandOrCollapse
 import com.example.healthapp.core.ui.kit.SimpleApproachInfoView
 import com.example.healthapp.databinding.LongExerciseViewItemBinding

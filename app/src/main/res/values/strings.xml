@@ -41,4 +41,9 @@
     <string name="approach_repeats_hint">Количество повторений</string>
     <string name="approach_duration_hint">Длительность</string>
     <string name="approach_complexity_hint">Сложность</string>
+
+    <!-- JOG CONSTRUCTOR -->
+    <string name="add_point_text">Добавить</string>
+    <string name="pop_point_text">Убрать</string>
+    <string name="jog_name_hint">Название пробежки</string>
 </resources>

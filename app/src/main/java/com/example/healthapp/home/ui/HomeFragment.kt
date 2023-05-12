@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
     private fun init() {
         binding.addJogButton.setOnClickListener {
-            viewModel.a()
+            findNavController().navigate(R.id.action_homeFragment_to_jogFragment)
         }
 
         binding.addTrainButton.setOnClickListener {

@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.example.healthapp.R
-import com.example.healthapp.core.foundation.recyclerView.clearError
 import com.example.healthapp.core.foundation.textViewUtils.emptyValidate
 import com.example.healthapp.core.foundation.textViewUtils.onTextChange
-import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentAddAproachSharedDialogBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Random
+import java.util.UUID
 
 @AndroidEntryPoint
 class AddApproachSharedDialog : DialogFragment() {
@@ -36,7 +36,7 @@ class AddApproachSharedDialog : DialogFragment() {
 
     private fun observeViewState() {
         with(binding) {
-            index.text = root.context.getString(R.string.approach_index_format, viewModel.currentExerciseApproaches.value.size + 1)
+            index.text = root.context.getString(R.string.approach_index_format, 1)
             complexityLayout.onTextChange { viewModel.currentApproachComplexity.value = it }
             durationLayout.onTextChange { viewModel.currentApproachDuration.value = it }
             repeatsLayout.onTextChange { viewModel.currentApproachRepeats.value = it }

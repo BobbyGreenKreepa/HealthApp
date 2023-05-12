@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.example.healthapp.R
-import com.example.healthapp.core.foundation.coroutines.launchOnStart
-import com.example.healthapp.core.foundation.recyclerView.clearError
-import com.example.healthapp.core.foundation.recyclerView.setError
-import com.example.healthapp.core.foundation.textViewUtils.*
+import com.example.healthapp.core.foundation.textViewUtils.emptyValidate
+import com.example.healthapp.core.foundation.textViewUtils.onTextChange
+import com.example.healthapp.core.foundation.textViewUtils.onTextSet
 import com.example.healthapp.core.ui.fragementUtils.showToast
 import com.example.healthapp.databinding.FragmentTrainConstructorBinding
 import com.example.healthapp.trains.trainConstructor.ui.TrainConstructorViewModel
@@ -29,7 +28,7 @@ import kotlinx.coroutines.flow.onEach
 class TrainConstructorFragment : Fragment() {
 
     private var _binding: FragmentTrainConstructorBinding? = null
-    private val  binding get() = _binding!!
+    private val binding get() = _binding!!
 
     private val viewModel: TrainConstructorViewModel by hiltNavGraphViewModels(R.id.navigation3)
 
