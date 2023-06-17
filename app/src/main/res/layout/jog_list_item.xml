@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingEnd="8dp"
+    android:paddingStart="8dp"
+    android:paddingTop="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:maxWidth="75dp"
+            android:ellipsize="end"
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@drawable/label_bg"
+            android:elevation="12dp"
+            app:layout_constraintEnd_toEndOf="@id/trailPhoto"
+            app:layout_constraintTop_toTopOf="@id/trailPhoto"
+            tools:text="500м" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/trailPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/achievements_image_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceImage" />
+
+        <TextView
+            android:padding="2dp"
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/trailPhoto"
+            app:layout_constraintEnd_toEndOf="@id/trailPhoto"
+            app:layout_constraintStart_toStartOf="@id/trailPhoto"
+            tools:text="Ебать">
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

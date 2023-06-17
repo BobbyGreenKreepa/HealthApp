@@ -7,14 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthapp.R
+import com.example.healthapp.core.foundation.coroutines.launchOnResumed
 import com.example.healthapp.databinding.FragmentHomeBinding
+import com.example.healthapp.home.ui.jogsList.JogsAdapter
+import com.example.healthapp.home.ui.trainsList.TrainsAdapter
+import com.example.healthapp.trainConstructor.domain.entities.Train
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val  binding get() = _binding!!
@@ -27,17 +33,58 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         init()
-
+        initJogsAdapter()
+        initTrainsAdapter()
         return binding.root
     }
 
-    private fun init() {
-        binding.addJogButton.setOnClickListener {
-            viewModel.a()
+    private fun initTrainsAdapter() {
+        val adapter = TrainsAdapter(onItemClick = {
+            onTrainClick(it)
+        }, onTrainPlayClick = {
+            findNavController().navigate(R.id.action_homeFragment_to_trainView)
+        })
+
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.trainsList.apply {
+            this.adapter = adapter
+            this.layoutManager = layoutManager
         }
 
-        binding.addTrainButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_navigation3)
+        viewModel.trains.onEach {
+            adapter.submitList(it)
+        }.launchOnResumed(viewLifecycleOwner)
+    }
+
+    private fun initJogsAdapter() {
+        val adapter = JogsAdapter({ }, viewModel.yandexURLFormatter)
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.jogsList.apply {
+            this.adapter = adapter
+            this.layoutManager = layoutManager
         }
+
+        viewModel.jogs.onEach {
+            adapter.submitList(it)
+        }.launchOnResumed(viewLifecycleOwner)
+    }
+
+    private fun init() {
+        binding.apply {
+            addJogButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_jogFragment)
+            }
+
+            addTrainButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_navigation3)
+            }
+        }
+    }
+
+    private fun onTrainClick(train: Train) {
+        val action = HomeFragmentDirections.actionHomeFragmentToTrainInfoDialog(train)
+        findNavController().navigate(action)
     }
 }

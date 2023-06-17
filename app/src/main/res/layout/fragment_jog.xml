@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".jogConstructor.ui.jogConstrcutor.JogFragment">
+
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:visibility="gone"
+            style="@style/DefaultButtonStyle"
+            android:background="@drawable/default_rounded_corners_bg"
+            android:id="@+id/dataPointInfo"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jogNameLayout"
+            android:layout_alignStart="@+id/jogNameLayout"
+            android:layout_alignEnd="@+id/jogNameLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/jogNameLayout"
+            style="@style/EditTextLayoutWithHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/jog_name_hint">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/point_target_ic" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="1dp">
+
+            <Button
+                android:id="@+id/popPoint"
+                style="@style/DefaultButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/pop_point_text"
+                android:textColor="@color/error_color"
+                app:layout_constraintBottom_toTopOf="@id/addPoint"
+                app:layout_constraintEnd_toEndOf="@+id/addPoint"
+                app:layout_constraintStart_toStartOf="@+id/addPoint" />
+
+            <Button
+                android:id="@+id/addPoint"
+                style="@style/DefaultButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_point_text"
+                android:textColor="@color/health_green"
+                app:layout_constraintBottom_toBottomOf="@+id/save"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/save"
+                style="@style/DefaultButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/save_train_hint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rangeCounter"
+                style="@style/ListEmptyWarningStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/gray_stroke_bg"
+                android:ellipsize="end"
+                android:lines="1"
+                android:padding="6dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/save"
+                app:layout_constraintEnd_toEndOf="@+id/save"
+                app:layout_constraintStart_toStartOf="@+id/save"
+                app:layout_constraintTop_toTopOf="@+id/popPoint"
+                tools:text="24 км" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.yandex.mapkit.mapview.MapView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

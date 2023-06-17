@@ -6,53 +6,42 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.healthapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.healthapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.healthapp.home.ui.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_navigation3"
-            app:destination="@id/navigation3" />
+            app:destination="@id/innerTrainConstructor" />
+        <action
+            android:id="@+id/action_homeFragment_to_jogFragment"
+            app:destination="@id/jogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trainInfoDialog"
+            app:destination="@id/trainInfoDialog"/>
+        <action
+            android:id="@+id/action_homeFragment_to_trainView"
+            app:destination="@id/trainView" />
     </fragment>
     <fragment
         android:id="@+id/addExerciseSharedFragment"
-        android:name="com.example.healthapp.trains.trainConstructor.ui.exercise.ExerciseConstructorFragment"
+        android:name="com.example.healthapp.trainConstructor.ui.constructor.exercise.ExerciseConstructorFragment"
         android:label="fragment_add_exercise_shared"
         tools:layout="@layout/fragment_add_exercise_shared" >
         <action
             android:id="@+id/action_addExerciseSharedFragment_to_addAproachSharedDialog"
-            app:destination="@id/addAproachSharedDialog" />
+            app:destination="@id/addApproachSharedDialog" />
     </fragment>
     <dialog
-        android:id="@+id/addAproachSharedDialog"
-        android:name="com.example.healthapp.trains.trainConstructor.ui.approach.AddApproachSharedDialog"
+        android:id="@+id/addApproachSharedDialog"
+        android:name="com.example.healthapp.trainConstructor.ui.constructor.approach.AddApproachSharedDialog"
         android:label="fragment_add_aproach_shared_dialog"
         tools:layout="@layout/fragment_add_aproach_shared_dialog" />
-    <navigation android:id="@+id/navigation3"
+    <navigation android:id="@+id/innerTrainConstructor"
         app:startDestination="@id/trainConstructor">
         <fragment
             android:id="@+id/trainConstructor"
-            android:name="com.example.healthapp.trains.trainConstructor.ui.train.TrainConstructorFragment"
+            android:name="com.example.healthapp.trainConstructor.ui.constructor.train.TrainConstructorFragment"
             android:label="fragment_train_constructor"
             tools:layout="@layout/fragment_train_constructor">
             <action
@@ -60,4 +49,28 @@
                 app:destination="@id/addExerciseSharedFragment" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/jogFragment"
+        android:name="com.example.healthapp.jogConstructor.ui.jogConstrcutor.JogFragment"
+        android:label="fragment_jog"
+        tools:layout="@layout/fragment_jog" />
+    <dialog
+        android:id="@+id/trainInfoDialog"
+        android:name="com.example.healthapp.home.ui.trainInfo.TrainInfoDialog"
+        tools:layout="@layout/fragment_train_info_dialog">
+
+        <argument
+            android:name="train"
+            app:argType="com.example.healthapp.trainConstructor.domain.entities.Train" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/trainView"
+        android:name="com.example.healthapp.trainView.ui.TrainViewFragment"
+        android:label="train_view"
+        tools:layout="@layout/fragment_train_view">
+        <argument
+            android:name="train"
+            app:argType="com.example.healthapp.trainConstructor.domain.entities.Train" />
+    </fragment>
 </navigation>

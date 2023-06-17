@@ -19,6 +19,7 @@ class DataModule {
         return RealmConfiguration
             .Builder()
             .schemaVersion(realmVersion)
+            .deleteRealmIfMigrationNeeded()
             .build()
     }
 }
