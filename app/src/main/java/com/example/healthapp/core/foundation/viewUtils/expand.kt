@@ -9,12 +9,12 @@ fun View.expandOrCollapse(expand: Boolean) {
     if (expand) expand(this) else collapse(this)
 }
 
-fun expand(view: View) {
-    val animation = expandAction(view)
+fun expand(view: View, duration: Long = 0) {
+    val animation = expandAction(view, duration)
     view.startAnimation(animation)
 }
 
-private fun expandAction(view: View): Animation {
+private fun expandAction(view: View, duration: Long = 0): Animation {
     view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     val currentHeight: Int = view.measuredHeight
     view.layoutParams.height = 0
@@ -28,13 +28,17 @@ private fun expandAction(view: View): Animation {
         }
     }
 
-    animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong()
-    view.startAnimation(animation)
+    if (duration == 0L) {
+        animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong()
+    } else {
+        animation.duration = duration
+    }
 
+    view.startAnimation(animation)
     return animation
 }
 
-fun collapse(view: View) {
+fun collapse(view: View, duration: Long = 0) {
     val currentHeight: Int = view.measuredHeight
 
     val animation: Animation = object : Animation() {
@@ -49,6 +53,11 @@ fun collapse(view: View) {
         }
     }
 
-    animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong()
+    if (duration == 0L) {
+        animation.duration = (currentHeight / view.context.resources.displayMetrics.density).toLong()
+    } else {
+        animation.duration = duration
+    }
+
     view.startAnimation(animation)
 }

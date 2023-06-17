@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".trains.trainConstructor.ui.train.TrainConstructorFragment">
+    tools:context=".trainConstructor.ui.constructor.train.TrainConstructorFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/trainNameLayout"

@@ -40,6 +40,10 @@
         <item name="cornerSize">10%</item>
     </style>
 
+    <style name="ShapedImageSmall">
+        <item name="cornerSize">3%</item>
+    </style>
+
     <style name="EditTextLayoutWithHint" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" >
         <item name="endIconMode">custom</item>
         <item name="endIconTint">@color/edit_text_selector_light</item>

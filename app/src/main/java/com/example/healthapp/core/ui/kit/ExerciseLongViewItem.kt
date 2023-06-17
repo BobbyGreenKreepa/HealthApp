@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.healthapp.R
 import com.example.healthapp.databinding.LongExerciseViewItemBinding
-import com.example.healthapp.trains.trainConstructor.domain.entities.Exercise
+import com.example.healthapp.trainConstructor.domain.entities.Exercise
 
 class ExerciseLongViewItem (context: Context) : FrameLayout(context) {
 

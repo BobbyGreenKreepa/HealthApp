@@ -19,6 +19,27 @@
     <string name="trains_label">Тренировки</string>
     <string name="add_jog">Добавить пробежку</string>
     <string name="add_train">Добавить тренировку</string>
+    <string name="train_exercises_data">Упражнение N %1$d имеет  </string>
+    <string name="train_description_format">В данной тренировке %1$s, в рамках которой вы выполните %2$s, на тренировку ты потратите %3$s</string>
+    <plurals name="exercises_plurals">
+        <item quantity="one">%d упражнение</item>
+        <item quantity="two">%d упражнения</item>
+        <item quantity="few">%d упражнения</item>
+        <item quantity="other">%d упражнений</item>
+    </plurals>
+    <plurals name="approaches_plurals">
+        <item quantity="one">%d подход</item>
+        <item quantity="two">%d подхода</item>
+        <item quantity="few">%d подхода</item>
+        <item quantity="other">%d подходов</item>
+    </plurals>
+    <plurals name="minutes_plurals">
+        <item quantity="one">%d минуту</item>
+        <item quantity="two">%d минуты</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="other">%d минут</item>
+    </plurals>
+    <string name="train_info_text">Информация о тренировке</string>
 
     <!-- TRAIN CONSTRUCTOR -->
     <string name="train_name_hint">Название тренировки</string>
@@ -26,14 +47,14 @@
     <string name="add_exercise_hint">Добавить упражнение</string>
     <string name="save_train_hint">Сохранить</string>
     <string name="add_train_validate_failed_text">Надо хотя бы 1 упражнение</string>
-    <string name="empty_exercises_warning">Нету ни одной тренировки</string>
+    <string name="empty_exercises_warning">Нет ни одной тренировки</string>
 
     <!-- EXERCISE CONSTRUCTOR -->
     <string name="add_exercise">Сохранить</string>
     <string name="add_approach">Добавить подход</string>
-    <string name="exercise_name_hint">Назвние упражениения</string>
+    <string name="exercise_name_hint">Название упражениения</string>
     <string name="add_exercise_validate_failed_text">Добавьте хотя бы 1 подходод</string>
-    <string name="empty_approaches_warning">Нету ни одного подхода</string>
+    <string name="empty_approaches_warning">Нет ни одного подхода</string>
 
     <!-- APPROACH CONSTRUCTOR -->
     <string name="save_approach_text">Сохранить</string>
@@ -46,4 +67,11 @@
     <string name="add_point_text">Добавить</string>
     <string name="pop_point_text">Убрать</string>
     <string name="jog_name_hint">Название пробежки</string>
+    <string name="data_point_info_text_format">От начала маршрута до этой точки %1$s</string>
+    <string name="empty_jog_warning">Нельзя сохранить пустую пробежку</string>
+    <string name="format_distance">%1$d м.</string>
+
+    <!-- TRAIN INFO -->
+    <string name="exercise_info_format">Информация о упражнении "%1$s:\n%2$s</string>
+    <string name="approach_info_format">%1$d подход: сложность - %2$s; длительность - %3$s %4$s\n </string>
 </resources>

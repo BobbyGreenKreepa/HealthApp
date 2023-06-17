@@ -1,7 +1,7 @@
 package com.example.healthapp.core.di
 
-import com.example.healthapp.trains.trainConstructor.data.repos.TrainsRepositoryImpl
-import com.example.healthapp.trains.trainConstructor.domain.repos.ITrainsRepository
+import com.example.healthapp.trainConstructor.data.repos.TrainsRepositoryImpl
+import com.example.healthapp.trainConstructor.domain.repos.ITrainsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

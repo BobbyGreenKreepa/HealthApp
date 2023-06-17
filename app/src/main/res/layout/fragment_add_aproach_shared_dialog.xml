@@ -52,7 +52,6 @@
                     android:layout_height="wrap_content"
                     android:lines="1"
                     android:hint="@string/approach_duration_hint"
-                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="180 секунд" />

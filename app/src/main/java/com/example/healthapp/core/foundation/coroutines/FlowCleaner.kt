@@ -12,6 +12,6 @@ fun MutableStateFlow<String>.clear() {
 }
 
 @JvmName("mutableListClear")
-fun <T> MutableStateFlow<MutableList<T>>.clear() {
-    this.value = mutableListOf()
+fun <T> MutableStateFlow<List<T>>.clear() {
+    this.value = emptyList()
 }

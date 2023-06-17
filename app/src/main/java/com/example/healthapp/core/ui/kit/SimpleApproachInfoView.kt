@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.healthapp.R
 import com.example.healthapp.databinding.SimpleApproachInfoViewBinding
-import com.example.healthapp.trains.trainConstructor.domain.entities.Approach
+import com.example.healthapp.trainConstructor.domain.entities.Approach
 
 @SuppressLint("ViewConstructor")
 class SimpleApproachInfoView constructor(
